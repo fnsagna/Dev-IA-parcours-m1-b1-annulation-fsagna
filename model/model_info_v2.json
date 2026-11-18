@@ -1,0 +1,99 @@
+{
+  "model_name": "cancellation_model",
+  "version": "2.0.0",
+  "trained_on": "2026-11-17",
+  "scikit_learn_version": "1.6.1",
+  "features": [
+    "hotel",
+    "meal",
+    "country",
+    "market_segment",
+    "distribution_channel",
+    "reserved_room_type",
+    "deposit_type",
+    "customer_type",
+    "agent",
+    "lead_time",
+    "stays_in_weekend_nights",
+    "stays_in_week_nights",
+    "adults",
+    "children",
+    "babies",
+    "is_repeated_guest",
+    "previous_cancellations",
+    "previous_bookings_not_canceled",
+    "days_in_waiting_list",
+    "adr",
+    "total_of_special_requests",
+    "arrival_date",
+    "company"
+  ],
+  "engineered_features": [
+    "total_nights",
+    "total_guests",
+    "has_children",
+    "adr_per_guest",
+    "total_price",
+    "has_special_request",
+    "has_previous_cancel",
+    "has_company",
+    "arrival_month",
+    "arrival_weekday"
+  ],
+  "excluded_leaky_columns": [
+    "reservation_status",
+    "reservation_status_date",
+    "assigned_room_type",
+    "booking_changes",
+    "required_car_parking_spaces"
+  ],
+  "target": "is_canceled",
+  "main_metric": "f1",
+  "decision_threshold": 0.3,
+  "train_period": [
+    "2015-07-01",
+    "2016-08-31"
+  ],
+  "test_period": [
+    "2016-09-01",
+    "2016-12-31"
+  ],
+  "train_size": 58792,
+  "test_size": 19911,
+  "hyperparameters": {
+    "classifier__bootstrap": true,
+    "classifier__ccp_alpha": 0.0,
+    "classifier__class_weight": null,
+    "classifier__criterion": "gini",
+    "classifier__max_depth": 20,
+    "classifier__max_features": "sqrt",
+    "classifier__max_leaf_nodes": null,
+    "classifier__max_samples": null,
+    "classifier__min_impurity_decrease": 0.0,
+    "classifier__min_samples_leaf": 5,
+    "classifier__min_samples_split": 2,
+    "classifier__min_weight_fraction_leaf": 0.0,
+    "classifier__monotonic_cst": null,
+    "classifier__n_estimators": 200,
+    "classifier__n_jobs": -1,
+    "classifier__oob_score": false,
+    "classifier__random_state": 42,
+    "classifier__verbose": 0,
+    "classifier__warm_start": false
+  },
+  "test_metrics": {
+    "f1": 0.7263,
+    "precision": 0.8688,
+    "recall": 0.6239,
+    "accuracy": 0.8212,
+    "roc_auc": 0.8959,
+    "confusion_matrix": {
+      "tn": 11628,
+      "fp": 713,
+      "fn": 2847,
+      "tp": 4723
+    }
+  },
+  "training_seconds": 11.4,
+  "model_size_mb": 32.86
+}

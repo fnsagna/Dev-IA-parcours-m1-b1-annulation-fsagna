@@ -30,6 +30,8 @@ cp .env.example .env
 docker compose up -d
 ```
 
+> Si un PostgreSQL local occupe déjà le port 5432, mets `DB_PORT=5433` dans `.env` et le même port dans `DATABASE_URL`.
+
 Au premier démarrage, PostgreSQL crée les tables et charge l'historique (environ une minute). Vérifie que la base est prête :
 
 ```bash
