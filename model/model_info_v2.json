@@ -1,7 +1,7 @@
 {
   "model_name": "cancellation_model",
   "version": "2.0.0",
-  "trained_on": "2026-11-17",
+  "trained_on": "2026-11-19",
   "scikit_learn_version": "1.6.1",
   "features": [
     "hotel",
@@ -29,16 +29,9 @@
     "company"
   ],
   "engineered_features": [
-    "total_nights",
-    "total_guests",
-    "has_children",
-    "adr_per_guest",
     "total_price",
     "has_special_request",
-    "has_previous_cancel",
-    "has_company",
-    "arrival_month",
-    "arrival_weekday"
+    "has_previous_cancel"
   ],
   "excluded_leaky_columns": [
     "reservation_status",
@@ -49,7 +42,7 @@
   ],
   "target": "is_canceled",
   "main_metric": "f1",
-  "decision_threshold": 0.3,
+  "decision_threshold": 0.35,
   "train_period": [
     "2015-07-01",
     "2016-08-31"
@@ -65,7 +58,7 @@
     "classifier__ccp_alpha": 0.0,
     "classifier__class_weight": null,
     "classifier__criterion": "gini",
-    "classifier__max_depth": 20,
+    "classifier__max_depth": null,
     "classifier__max_features": "sqrt",
     "classifier__max_leaf_nodes": null,
     "classifier__max_samples": null,
@@ -82,18 +75,18 @@
     "classifier__warm_start": false
   },
   "test_metrics": {
-    "f1": 0.7263,
-    "precision": 0.8688,
-    "recall": 0.6239,
-    "accuracy": 0.8212,
-    "roc_auc": 0.8959,
+    "f1": 0.7328,
+    "precision": 0.8707,
+    "recall": 0.6326,
+    "accuracy": 0.8246,
+    "roc_auc": 0.9062,
     "confusion_matrix": {
-      "tn": 11628,
-      "fp": 713,
-      "fn": 2847,
-      "tp": 4723
+      "tn": 11630,
+      "fp": 711,
+      "fn": 2781,
+      "tp": 4789
     }
   },
-  "training_seconds": 11.4,
-  "model_size_mb": 32.86
+  "training_seconds": 10.3,
+  "model_size_mb": 34.83
 }

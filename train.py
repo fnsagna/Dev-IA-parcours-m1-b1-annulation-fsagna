@@ -47,7 +47,7 @@ TARGET = "is_canceled"
 # forêt aléatoire, validation croisée temporelle (TimeSeriesSplit), métrique F1.
 BEST_PARAMS = {
     "n_estimators": 200,
-    "max_depth": 20,           # arbres limités : moins de surapprentissage, modèle plus léger
+    "max_depth": None,         # profondeur illimitée : la taille des feuilles limite le surapprentissage
     "max_features": "sqrt",    # chaque nœud ne regarde qu'un sous-ensemble de variables
     "min_samples_leaf": 5,     # score proche du meilleur, écart train/validation réduit
 }
