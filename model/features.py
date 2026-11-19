@@ -58,17 +58,18 @@ RAW_NUMERICAL = [
 RAW_FEATURES = RAW_CATEGORICAL + RAW_NUMERICAL + ["arrival_date", "company"]
 
 # --- Variables nouvelles, créées par ajouter_variables() ------------------------
+# Seules trois variables sont utilisées ; les autres sont désactivées (en commentaire).
 NEW_NUMERICAL = [
-    "total_nights",           # durée du séjour
-    "total_guests",           # taille du groupe
-    "has_children",           # enfants ou bébés présents
-    "adr_per_guest",          # prix par nuit et par personne
+    # "total_nights",           # durée du séjour
+    # "total_guests",           # taille du groupe
+    # "has_children",           # enfants ou bébés présents
+    # "adr_per_guest",          # prix par nuit et par personne
     "total_price",            # montant total du séjour (adr × nuits)
     "has_special_request",    # au moins une demande particulière
     "has_previous_cancel",    # le client a déjà annulé au moins une fois
-    "has_company",            # réservation payée par une entreprise
-    "arrival_month",          # saisonnalité (1-12)
-    "arrival_weekday",        # jour de la semaine d'arrivée (0 = lundi)
+    # "has_company",            # réservation payée par une entreprise
+    # "arrival_month",          # saisonnalité (1-12)
+    # "arrival_weekday",        # jour de la semaine d'arrivée (0 = lundi)
 ]
 CATEGORICAL_FEATURES = RAW_CATEGORICAL
 NUMERICAL_FEATURES = RAW_NUMERICAL + NEW_NUMERICAL
@@ -77,23 +78,23 @@ NUMERICAL_FEATURES = RAW_NUMERICAL + NEW_NUMERICAL
 def ajouter_variables(df: pd.DataFrame) -> pd.DataFrame:
     """Reçoit le DataFrame BRUT et renvoie une copie enrichie des variables nouvelles."""
     df = df.copy()  # ne jamais modifier l'entrée
-    children = df["children"].fillna(0)
+    # children = df["children"].fillna(0)
     nights = df["stays_in_weekend_nights"] + df["stays_in_week_nights"]
-    guests = df["adults"] + children + df["babies"]
+    # guests = df["adults"] + children + df["babies"]
 
-    df["total_nights"] = nights
-    df["total_guests"] = guests
-    df["has_children"] = ((children + df["babies"]) > 0).astype(int)
-    # adults + children : les bébés ne paient pas ; on évite la division par zéro
-    df["adr_per_guest"] = df["adr"] / (df["adults"] + children).replace(0, np.nan)
+    # df["total_nights"] = nights
+    # df["total_guests"] = guests
+    # df["has_children"] = ((children + df["babies"]) > 0).astype(int)
+    # # adults + children : les bébés ne paient pas ; on évite la division par zéro
+    # df["adr_per_guest"] = df["adr"] / (df["adults"] + children).replace(0, np.nan)
     df["total_price"] = df["adr"] * nights
     df["has_special_request"] = (df["total_of_special_requests"] > 0).astype(int)
     df["has_previous_cancel"] = (df["previous_cancellations"] > 0).astype(int)
-    df["has_company"] = df["company"].notna().astype(int)
+    # df["has_company"] = df["company"].notna().astype(int)
 
-    arrival = pd.to_datetime(df["arrival_date"])
-    df["arrival_month"] = arrival.dt.month
-    df["arrival_weekday"] = arrival.dt.dayofweek
+    # arrival = pd.to_datetime(df["arrival_date"])
+    # df["arrival_month"] = arrival.dt.month
+    # df["arrival_weekday"] = arrival.dt.dayofweek
 
     # agent : identifiant -> texte, pour qu'il soit traité comme une catégorie
     df["agent"] = df["agent"].astype("Int64").astype(str).replace("<NA>", "aucun")
